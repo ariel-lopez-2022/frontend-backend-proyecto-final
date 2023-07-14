@@ -14,7 +14,7 @@ const Cart =()=> {
     const RemoveItem =async(pid) =>{
                             
           const res = await axios({
-             url:`http://localhost:8080/api/carts/${cid}/product/${pid}`,
+             url:`https://backend-final-coder-production.up.railway.app/api/carts/${cid}/product/${pid}`,
              method: 'DELETE',
              withCredentials: true,
              })         
@@ -39,7 +39,7 @@ const Cart =()=> {
 
     const ClearCart =async() =>{
         const res = await axios({
-        url:`http://localhost:8080/api/carts/${cid}`,
+        url:`https://backend-final-coder-production.up.railway.app/api/carts/${cid}`,
         method: 'DELETE',
         withCredentials: true,
       })
@@ -66,7 +66,7 @@ const Cart =()=> {
         
    try {  
       const res = await axios({
-      url:`http://localhost:8080/api/carts/${cid}`,
+      url:`https://backend-final-coder-production.up.railway.app/api/carts/${cid}`,
       method: 'GET',
       whitCredentials:true,
   }) 

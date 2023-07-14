@@ -15,7 +15,7 @@ const PaymentForm = () => {
     
     try {
       const response = await axios({
-      url:`http://localhost:8080/api/carts/${cid}/purchase`,
+      url:`https://backend-final-coder-production.up.railway.app/api/carts/${cid}/purchase`,
       method: 'POST',
       withCredentials: true,
     
@@ -29,7 +29,7 @@ const PaymentForm = () => {
   const handlerCleanCart = async () => {
     try {
        const response = await axios({
-       url: `http://localhost:8080/api/carts/${cid}`,
+       url: `https://backend-final-coder-production.up.railway.app/api/carts/${cid}`,
        method: 'DELETE',
        withCredentials: true,
       });

@@ -35,7 +35,7 @@ export const Items =({info})=>{
         } else{
           const {cart} = JSON.parse(user)
           const res = await axios({
-             url:`http://localhost:8080/api/carts/${cart}/product/${id}`,
+             url:`https://backend-final-coder-production.up.railway.app/api/carts/${cart}/product/${id}`,
              method: 'POST',
              withCredentials: true,
              })         

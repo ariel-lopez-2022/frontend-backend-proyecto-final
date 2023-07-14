@@ -9,7 +9,7 @@ const ItemListContainer = () => {
       const renderProducts = async()=>{
         try {  
           const res = await axios({
-          url:`http://localhost:8080/api/products`,
+          url:`https://backend-final-coder-production.up.railway.app/api/products`,
           method: 'GET',
           withCredentials: true,
       })         

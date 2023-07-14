@@ -19,7 +19,7 @@ const Navbar =()=> {
   const handlelogout =async()=>{
 
     const res = await axios({
-      url:"http://localhost:8080/api/session/logout",
+      url:"https://backend-final-coder-production.up.railway.app/api/session/logout",
       method: 'GET',
         }) 
     

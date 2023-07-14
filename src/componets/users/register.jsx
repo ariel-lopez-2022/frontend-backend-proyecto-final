@@ -59,7 +59,7 @@ const Register = ({ show, handleClose }) => {
 
         onSubmit=  {async (valores,{resetForm})=>{
           
-           await fetch("http://localhost:8080/api/session/register", {
+           await fetch("https://backend-final-coder-production.up.railway.app/api/session/register", {
              method: "POST",
              body: JSON.stringify(valores),
              headers: { "Content-type": "application/json",},
