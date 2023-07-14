@@ -1,6 +1,4 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Logo from "../header/logo";
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import './login.css';
