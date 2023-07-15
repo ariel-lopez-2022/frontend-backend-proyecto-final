@@ -14,8 +14,10 @@ const ItemListContainer = () => {
           withCredentials: true,
       })         
         const data = res.data.payload
-          setData(data.docs) 
+          setData(data.docs)
+          console.log(data)
         } catch (error) {
+          console.log("aqui")
         console.log(error)  
       }}
       renderProducts() 
