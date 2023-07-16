@@ -1,53 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import '../style/card.css';
 import '../style/boton.css';
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import { CartContext } from '../context/cartContext';
 
 
 
-export const Items =({info})=>{
+const Items =({info})=>{
   const {_id ,price, thumbnail, title} = info
-  const [userLogin, setUserLogin]= useState(false)
-  const [user, setUser]= useState([])
+  const {addProduct} = useContext(CartContext)
+  const  infouser = JSON.parse(localStorage.getItem('user'))
   
-   useEffect(()=>{
-     const user = localStorage.getItem('user')
-        if (!user){
-        setUserLogin(false)
+  const addProducts = (async(id)=>{
+     if(!infouser){
+      Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'Para Agregar Productos debe Iniciar Sesion!',
+       
+       })
+
+
      }else{
-        setUserLogin(true)
-        setUser(user)
+         const product = await addProduct(id, infouser.cart)
+         Swal.fire({
+            icon: 'success',
+            title: 'OK',
+            text: 'Producto Agregado',
+          
+          })
      }
     
-  },[])
-  
- 
- 
- 
-   const addProduct = (async(id)=>{
-      const user = localStorage.getItem('user')
-      if (!user){
-        Swal.fire({
-           icon: 'error',
-           title: 'Para Agregar Producto',
-           text: 'Iniciar Sesión',
-          })
+  })
 
-        } else{
-          const {cart} = JSON.parse(user)
-          const res = await axios({
-             url:`https://backend-final-coder-production.up.railway.app/api/carts/${cart}/product/${id}`,
-             method: 'POST',
-             mode: 'no-cors',
-             headers: { "Content-type": "application/json", "Access-Control-Allow-Origin":"*"},
-             withCredentials: true,
-             
-             })         
-             const data = res.data
-             console.log(data)
-            }
-       })
     
     return(
         <div className="col-md-4  d-flex justify-content-center m-2">
@@ -56,7 +41,7 @@ export const Items =({info})=>{
              <div className="card-body text-center">
               <h5 className="card-title card-titulo ">{title}</h5>
               <p className="card-text precio ">$ {price}</p>
-               <button onClick={()=> addProduct(_id)}>Agregar</button>
+               <button onClick={()=> addProducts(_id)}>Agregar</button>
              </div>
           </div>
         </div>

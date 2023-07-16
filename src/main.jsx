@@ -7,17 +7,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle'
 import Cart from './componets/cart/cart'
 import Stripe from './componets/stripe/Stripe'
+import CartProvider from './componets/context/cartContext'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-     
+      <CartProvider>
        <Navbar />
           <Routes>
            <Route path="/" element={<ItemListContainer />}/>
            <Route path="/cart" element={<Cart />}/>
            <Route path="/stripe/:cid" element={<Stripe />} />
           </Routes>  
+      </CartProvider>
       
    </BrowserRouter>
 )
