@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import './login.css';
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Register = ({ show, handleClose }) => {
   
@@ -56,30 +57,21 @@ const Register = ({ show, handleClose }) => {
         }}
 
         onSubmit=  {async (valores,{resetForm})=>{
+          try {
           
-           await fetch("https://backend-final-coder-production.up.railway.app/api/session/register", {
-             method: "POST",
-             body: JSON.stringify(valores),
-             headers: { "Content-type": "application/json",},
-           })
-             .then((res) => res.json())
-             .then((data) => {
-              
-               if(data.status == "error"){
-                  Swal.fire({
-                    title: `${data.message}`,
-                    icon:`${data.status}`,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Continuar",
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      handleClose()
-                      resetForm()
-                    }
-                  });
-                } else{
-                    Swal.fire({
+            const res = await axios({
+              url:"https://backend-final-coder-production.up.railway.app/api/session/register",
+              method: 'POST',
+              mode: 'no-cors',
+              data: valores,
+              headers: { "Content-type": "application/json",}
+      
+                      
+          }) 
+            const data = res.data
+            console.log(data)
+            if(data.status == "error"){
+                      Swal.fire({
                         title: `${data.message}`,
                         icon:`${data.status}`,
                         confirmButtonColor: "#3085d6",
@@ -91,25 +83,26 @@ const Register = ({ show, handleClose }) => {
                           resetForm()
                         }
                       });
-
-                }
-             })
-
-             .catch((err) => {
-              Swal.fire({
-                title: "error inesperado",
-                icon: "warning",
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "OK",
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  resetForm()
-                  handleClose()
-                 
-                }
-              });
-              });
+                    } else{
+                        Swal.fire({
+                            title: `${data.message}`,
+                            icon:`${data.status}`,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Continuar",
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              handleClose()
+                              resetForm()
+                            }
+                          });
+    
+                    }
+           
+          } catch (error) {
+            console.log(error)
+          }
+             
          }}
       >
          {({errors})=>(

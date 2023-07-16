@@ -18,6 +18,7 @@ const PaymentForm = () => {
       url:`https://backend-final-coder-production.up.railway.app/api/carts/${cid}/purchase`,
       method: 'POST',
       withCredentials: true,
+      headers: { "Content-type": "application/json",}
     
     });
        const data = response.data
@@ -32,6 +33,7 @@ const PaymentForm = () => {
        url: `https://backend-final-coder-production.up.railway.app/api/carts/${cid}`,
        method: 'DELETE',
        withCredentials: true,
+       headers: { "Content-type": "application/json",}
       });
       const data = response.data
       

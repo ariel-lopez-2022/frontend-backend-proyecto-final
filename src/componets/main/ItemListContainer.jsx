@@ -11,11 +11,11 @@ const ItemListContainer = () => {
           const res = await axios({
           url:`https://backend-final-coder-production.up.railway.app/api/products`,
           method: 'GET',
-          withCredentials: true,
-      })         
+          mode: 'no-cors',
+        })         
         const data = res.data.payload
           setData(data.docs)
-          console.log(data)
+        
         } catch (error) {
           console.log("aqui")
         console.log(error)  

@@ -5,6 +5,8 @@ import "./login.css";
 import Swal from "sweetalert2";
 import axios from "axios";
 
+
+
 const Login = ({ show, handleClose }) => {
   const fetchLogin = async (valores, { resetForm }) => {
    
@@ -12,12 +14,12 @@ const Login = ({ show, handleClose }) => {
         const res = await axios({
         url:"https://backend-final-coder-production.up.railway.app/api/session/login",
         method: 'POST',
+        mode: 'no-cors',
         data: valores,
-        withCredentials: true,
-                
+        headers: { "Content-type": "application/json",}
     }) 
     
-    const data = res.data
+       const data = res.data
   
     if (data.status == "error") {
       Swal.fire({
@@ -41,12 +43,11 @@ const Login = ({ show, handleClose }) => {
         confirmButtonText: "Continuar",
       }).then((result) => {
         if (result.isConfirmed) {
-          
           resetForm();
           handleClose();
           localStorage.setItem('user',JSON.stringify(data.user))
           localStorage.setItem('token',JSON.stringify(data.token))
-                                        
+          
         }
       });
     }

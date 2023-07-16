@@ -26,20 +26,26 @@ export const Items =({info})=>{
  
  
    const addProduct = (async(id)=>{
-      if (!userLogin){
+      const user = localStorage.getItem('user')
+      if (!user){
         Swal.fire({
            icon: 'error',
            title: 'Para Agregar Producto',
            text: 'Iniciar Sesión',
           })
+
         } else{
           const {cart} = JSON.parse(user)
           const res = await axios({
              url:`https://backend-final-coder-production.up.railway.app/api/carts/${cart}/product/${id}`,
              method: 'POST',
+             mode: 'no-cors',
+             headers: { "Content-type": "application/json", "Access-Control-Allow-Origin":"*"},
              withCredentials: true,
+             
              })         
              const data = res.data
+             console.log(data)
             }
        })
     
