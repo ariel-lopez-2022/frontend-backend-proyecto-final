@@ -9,9 +9,11 @@ import { CartContext } from '../context/cartContext';
 const Items =({info})=>{
   const {_id ,price, thumbnail, title} = info
   const {addProduct} = useContext(CartContext)
-  const  infouser = JSON.parse(localStorage.getItem('user'))
+
+  
   
   const addProducts = (async(id)=>{
+    const  infouser = JSON.parse(localStorage.getItem('user'))
      if(!infouser){
       Swal.fire({
          icon: 'error',

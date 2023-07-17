@@ -4,12 +4,9 @@ import Modal from "react-bootstrap/Modal";
 import "./login.css";
 import Swal from "sweetalert2";
 import axios from "axios";
-import {Link, useNavigate} from "react-router-dom";
-import ItemListContainer from "../main/ItemListContainer";
 
 
 const Login = ({ show, handleClose }) => {
-  const navigate = useNavigate()
   const fetchLogin = async (valores, { resetForm }) => {
    
    try {
@@ -49,7 +46,7 @@ const Login = ({ show, handleClose }) => {
           handleClose();
           localStorage.setItem('user',JSON.stringify(data.user))
           localStorage.setItem('token',JSON.stringify(data.token))
-          return <ItemListContainer/> 
+         
         }
       });
     }

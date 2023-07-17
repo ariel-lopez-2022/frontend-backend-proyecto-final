@@ -28,10 +28,8 @@ const CartProvider = (props)=>{
         })
         const TotalProducts =()=>{
             let cantidad = 0; 
-            console.log(cart)
-            cart.forEach((product)=>{
-                console.log(product) 
-            })
+           
+            
             return cantidad
         }
 
